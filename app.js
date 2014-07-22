@@ -22,7 +22,7 @@ var config = require('./config')(app, express);
 
 /// Routes
 
-// Home
+// Principal
 app.get('/', routes.index);
 
 app.get('/pontos/', function (req, res) {
@@ -37,7 +37,29 @@ app.get('/pontos/', function (req, res) {
     })
 
 });
-// All users para hospedagems
+// Recupera um registro especifico para Pontos Turisticos
+app.get('/pontos/:_id', function (req, res) {
+    res.contentType('application/json');
+
+    Ponto.findOne({
+        _id: req.params._id
+    }, function (err, pontos) {
+
+        if (pontos != null) {
+
+            res.send(pontos)
+
+        } else {
+
+            res.render('404', {
+                title: 'Registro não encontrado'
+            })
+
+        }
+    })
+})
+
+// Recupera todos os registros de hospedagens
 app.get('/hosp/', function (req, res) {
     res.contentType('application/json');
 
@@ -50,7 +72,29 @@ app.get('/hosp/', function (req, res) {
     })
 
 });
-// All users Para Transportes
+// Recupera um Registro especifico de Hospedagens
+app.get('/hosp/:_id', function (req, res) {
+    res.contentType('application/json');
+
+    Hospedagem.findOne({
+        _id: req.params._id
+    }, function (err, hospedagems) {
+
+        if (hospedagems != null) {
+
+            res.send(hospedagems)
+
+        } else {
+
+            res.render('404', {
+                title: 'Registro não encontrado'
+            })
+
+        }
+    })
+})
+
+// Recupera todos os registros de Transportes
 app.get('/transp/', function (req, res) {
     res.contentType('application/json');
 
@@ -63,7 +107,29 @@ app.get('/transp/', function (req, res) {
     })
 
 });
-// All users Para Utilidades Publicas
+// Recupera um Registro especifico de Transportes
+app.get('/transp/:_id', function (req, res) {
+    res.contentType('application/json');
+
+    Tranporte.findOne({
+        _id: req.params._id
+    }, function (err, transportes) {
+
+        if (transportes != null) {
+
+            res.send(transportes)
+
+        } else {
+
+            res.render('404', {
+                title: 'Registro não encontrado'
+            })
+
+        }
+    })
+})
+
+// Recupera todos os registros de Utilidades Publicas
 app.get('/util/', function (req, res) {
     res.contentType('application/json');
 
@@ -76,8 +142,29 @@ app.get('/util/', function (req, res) {
     })
 
 });
+// Recupera um Registro especifico de Utilidade Publica
+app.get('/util/:_id', function (req, res) {
+    res.contentType('application/json');
 
-// All users Para Sobre
+    Utilidade.findOne({
+        _id: req.params._id
+    }, function (err, utilidades) {
+
+        if (utilidades != null) {
+
+            res.send(utilidades)
+
+        } else {
+
+            res.render('404', {
+                title: 'Registro não encontrado'
+            })
+
+        }
+    })
+})
+
+// Recupera todos os registros de Para Sobre
 app.get('/sobre/', function (req, res) {
     res.contentType('application/json');
 
@@ -90,8 +177,29 @@ app.get('/sobre/', function (req, res) {
     })
 
 });
+// Recupera um Registro especifico de Sobre
+app.get('/sobre/:_id', function (req, res) {
+    res.contentType('application/json');
 
-// All users Para Restaurantes
+    Sobre.findOne({
+        _id: req.params._id
+    }, function (err, sobres) {
+
+        if (sobres != null) {
+
+            res.send(sobres)
+
+        } else {
+
+            res.render('404', {
+                title: 'Registro não encontrado'
+            })
+
+        }
+    })
+})
+
+// Recupera todos os registros de Restaurantes
 app.get('/resta/', function (req, res) {
     res.contentType('application/json');
 
@@ -104,25 +212,34 @@ app.get('/resta/', function (req, res) {
     })
 
 });
-
-// All users Para Pontos Turisticos
-app.get('/util/', function (req, res) {
+// Recupera um Registro especifico de Restaurantes
+app.get('/resta/:_id', function (req, res) {
     res.contentType('application/json');
 
-    Pontos.find({}, function (err, pontos) {
+    Restaurante.findOne({
+        _id: req.params._id
+    }, function (err, restaurantes) {
 
-        if (err) throw err;
+        if (restaurantes != null) {
 
-        res.send(pontos)
+            res.send(restaurantes)
 
+        } else {
+
+            res.render('404', {
+                title: 'Registro não encontrado'
+            })
+
+        }
     })
-
-});
-
+})
 
 
-var  port = process.env.PORT || CONFIG.port;
-app.listen (port);
-/*app.listen(3000, function () {
-    console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
-});*/
+// Configuração para rodar no servidor HEROKU 
+var port = process.env.PORT || CONFIG.port;
+app.listen(port);
+
+// Configuração para rodar no servidor LOCAL
+//app.listen(3000, function () {
+//  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+//});
