@@ -1,8 +1,8 @@
 var express = require('express'),
     routes = require('./routes'),
     mongoose = require('mongoose'),
-    db = mongoose.connect('mongodb://ceitpr3g:ceitpr3g1906@ds027809.mongolab.com:27809/hayodb'),
-    // db = mongoose.connect('mongodb://localhost/node_api'),
+    
+    db = mongoose.connect('mongodb://localhost/node_api'),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
     Ponto = require('./models/pdados.js').make(Schema, mongoose),
