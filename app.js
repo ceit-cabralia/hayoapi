@@ -15,14 +15,8 @@ var express = require('express'),
 
 var app = module.exports = express.createServer();
 
-
-// Configs
 var config = require('./config')(app, express);
 
-
-/// Routes
-
-// Principal
 app.get('/', routes.index);
 
 app.get('/pontos/', function (req, res) {
@@ -37,7 +31,7 @@ app.get('/pontos/', function (req, res) {
     })
 
 });
-// Recupera um registro especifico para Pontos Turisticos
+
 app.get('/pontos/:_id', function (req, res) {
     res.contentType('application/json');
 
@@ -59,7 +53,6 @@ app.get('/pontos/:_id', function (req, res) {
     })
 })
 
-// Recupera todos os registros de hospedagens
 app.get('/hosp/', function (req, res) {
     res.contentType('application/json');
 
@@ -72,7 +65,7 @@ app.get('/hosp/', function (req, res) {
     })
 
 });
-// Recupera um Registro especifico de Hospedagens
+
 app.get('/hosp/:_id', function (req, res) {
     res.contentType('application/json');
 
@@ -94,7 +87,6 @@ app.get('/hosp/:_id', function (req, res) {
     })
 })
 
-// Recupera todos os registros de Transportes
 app.get('/transp/', function (req, res) {
     res.contentType('application/json');
 
@@ -107,7 +99,7 @@ app.get('/transp/', function (req, res) {
     })
 
 });
-// Recupera um Registro especifico de Transportes
+
 app.get('/transp/:_id', function (req, res) {
     res.contentType('application/json');
 
@@ -129,7 +121,6 @@ app.get('/transp/:_id', function (req, res) {
     })
 })
 
-// Recupera todos os registros de Utilidades Publicas
 app.get('/util/', function (req, res) {
     res.contentType('application/json');
 
@@ -142,7 +133,7 @@ app.get('/util/', function (req, res) {
     })
 
 });
-// Recupera um Registro especifico de Utilidade Publica
+
 app.get('/util/:_id', function (req, res) {
     res.contentType('application/json');
 
@@ -164,7 +155,6 @@ app.get('/util/:_id', function (req, res) {
     })
 })
 
-// Recupera todos os registros de Para Sobre
 app.get('/sobre/', function (req, res) {
     res.contentType('application/json');
 
@@ -177,7 +167,7 @@ app.get('/sobre/', function (req, res) {
     })
 
 });
-// Recupera um Registro especifico de Sobre
+
 app.get('/sobre/:_id', function (req, res) {
     res.contentType('application/json');
 
@@ -199,7 +189,6 @@ app.get('/sobre/:_id', function (req, res) {
     })
 })
 
-// Recupera todos os registros de Restaurantes
 app.get('/resta/', function (req, res) {
     res.contentType('application/json');
 
@@ -212,7 +201,7 @@ app.get('/resta/', function (req, res) {
     })
 
 });
-// Recupera um Registro especifico de Restaurantes
+
 app.get('/resta/:_id', function (req, res) {
     res.contentType('application/json');
 
@@ -233,13 +222,6 @@ app.get('/resta/:_id', function (req, res) {
         }
     })
 })
-
-
-// Configuração para rodar no servidor HEROKU 
-var port = process.env.PORT || CONFIG.port;
-app.listen(port);
-
-// Configuração para rodar no servidor LOCAL
-//app.listen(3000, function () {
-//  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
-//});
+app.listen(3000, function () {
+console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+});
